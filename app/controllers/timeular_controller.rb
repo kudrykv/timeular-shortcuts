@@ -32,7 +32,7 @@ class TimeularController < ApplicationController
   end
 
   def query_tags
-    params[:tags_string].split(',').map(&:downcase).map(&:strip)
+    params[:tags_string].split(/,|\s|and/).map(&:downcase).map(&:strip).compact.reject(&:empty?)
   end
 
   def svc
