@@ -44,4 +44,13 @@ class TimeularService
     @client.update_note(ct.prepend_tags(encoded_tags))
     'Done.'
   end
+
+  def comment(msg)
+    return 'You did not specify your comment.' if msg.empty?
+    return 'You are not tracking anything at the time.' unless (ct = @client.current_tracking)
+
+    note = [ct.extract_tags_to_string, msg].compact.join(' ')
+    @client.update_note(note)
+    'Done.'
+  end
 end

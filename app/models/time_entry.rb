@@ -21,6 +21,12 @@ class TimeEntry < BasicHash
     encoded_tags.push(note_text).compact.join(' ')
   end
 
+  def extract_tags_to_string
+    return unless note_text
+
+    note_text.scan(/<{{\|t\|\d+\|}}>/)&.join(' ')
+  end
+
   private
 
   def activity_name

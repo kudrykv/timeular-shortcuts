@@ -25,6 +25,12 @@ class TimeularController < ApplicationController
     render json: e, status: 400
   end
 
+  def comment
+    render json: svc.comment(query_comment)
+  rescue StandardError => e
+    render json: e, status: 400
+  end
+
   private
 
   def query_activity
@@ -33,6 +39,10 @@ class TimeularController < ApplicationController
 
   def query_tags
     params[:tags_string].split(/,|\s|and/).map(&:downcase).map(&:strip).compact.reject(&:empty?)
+  end
+
+  def query_comment
+    params[:comment]
   end
 
   def svc
