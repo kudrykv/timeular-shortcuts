@@ -14,6 +14,13 @@ class TimeEntry < BasicHash
     @started_at ||= Time.parse("#{@item['startedAt']}Z")
   end
 
+  def prepend_tags(encoded_tags)
+    encoded_tags = encoded_tags.reject { |t| note_text&.include? t }
+    return note_text if encoded_tags.empty?
+
+    encoded_tags.push(note_text).compact.join(' ')
+  end
+
   private
 
   def activity_name

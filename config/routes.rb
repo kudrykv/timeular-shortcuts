@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   get '/timeular/tracking_status', to: 'timeular#tracking_status'
   post '/timeular/start_tracking', to: 'timeular#start_tracking'
   post '/timeular/stop_tracking', to: 'timeular#stop_tracking'
+
+  post '/timeular/add_tags', to: 'timeular#add_tags'
 end

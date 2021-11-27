@@ -19,10 +19,20 @@ class TimeularController < ApplicationController
     render json: e, status: 400
   end
 
+  def add_tags
+    render json: svc.add_tags(query_tags)
+  rescue StandardError => e
+    render json: e, status: 400
+  end
+
   private
 
   def query_activity
     params[:activity]
+  end
+
+  def query_tags
+    params[:tags_string].split(',').map(&:downcase).map(&:strip)
   end
 
   def svc

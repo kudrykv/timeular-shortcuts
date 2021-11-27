@@ -8,8 +8,7 @@ class TimeularClient
   end
 
   def current_tracking
-    ct = get('/tracking')['currentTracking']
-    return unless ct
+    return unless (ct = get('/tracking')['currentTracking'])
 
     TimeEntry.new(ct)
   end
@@ -28,6 +27,14 @@ class TimeularClient
     return if e.message.include? 'is not at least 1 minute'
 
     raise e
+  end
+
+  def tags
+    get('/tags-and-mentions')['tags'].map { |t| Tag.new(t) }
+  end
+
+  def update_note(note)
+    patch('/tracking', json: { note: { text: note } })
   end
 
   private
