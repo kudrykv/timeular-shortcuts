@@ -24,4 +24,11 @@ class TimeularService
     @client.start_tracking activities.first.id
     'Done.'
   end
+
+  def stop_tracking
+    return 'You are not tracking anything at the time.' unless @client.current_tracking
+
+    @client.stop_tracking
+    'Done.'
+  end
 end

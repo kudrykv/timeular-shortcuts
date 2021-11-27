@@ -13,6 +13,12 @@ class TimeularController < ApplicationController
     render json: e, status: 400
   end
 
+  def stop_tracking
+    render json: svc.stop_tracking
+  rescue StandardError => e
+    render json: e, status: 400
+  end
+
   private
 
   def query_activity
