@@ -1,12 +1,23 @@
 # frozen_string_literal: true
+
 class TimeularController < ApplicationController
   def tracking_status
     render json: svc.current_tracking
-  rescue StandardError => msg
-    render json: msg, status: 400
+  rescue StandardError => e
+    render json: e, status: 400
+  end
+
+  def start_tracking
+    render json: svc.start_tracking(query_activity)
+  rescue StandardError => e
+    render json: e, status: 400
   end
 
   private
+
+  def query_activity
+    params[:activity]
+  end
 
   def svc
     TimeularService.new(client)

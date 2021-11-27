@@ -8,11 +8,26 @@ class TimeularClient
   end
 
   def current_tracking
-    TimeEntry.new(get('/tracking')['currentTracking'])
+    ct = get('/tracking')['currentTracking']
+    return unless ct
+
+    TimeEntry.new(ct)
   end
 
   def get_active_activities
     get_activities['activities'].map { |act| Activity.new(act) }
+  end
+
+  def start_tracking(id)
+    post("/tracking/#{id}/start", json: { startedAt: now })
+  end
+
+  def stop_tracking
+    post('/tracking/stop', json: { stoppedAt: now })
+  rescue StandardError => e
+    return if e.message.include? 'is not at least 1 minute'
+
+    raise e
   end
 
   private
@@ -41,5 +56,9 @@ class TimeularClient
 
   def auth
     HTTP.auth("Bearer #{@token}")
+  end
+
+  def now
+    Time.now.utc.strftime(@format)
   end
 end
