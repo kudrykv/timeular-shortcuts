@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   post '/timeular/stop_tracking', to: 'timeular#stop_tracking'
 
   post '/timeular/add_tags', to: 'timeular#add_tags'
+  post '/timeular/tags', to: 'timeular#tags'
   post '/timeular/comment', to: 'timeular#comment'
 end

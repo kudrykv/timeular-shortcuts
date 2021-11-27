@@ -27,6 +27,12 @@ class TimeEntry < BasicHash
     note_text.scan(/<{{\|t\|\d+\|}}>/)&.join(' ')
   end
 
+  def extract_note_to_string
+    return unless note_text
+
+    note_text.gsub(/<{{\|t\|\d+\|}}>/, '').gsub(/[\t ]+/, ' ').strip
+  end
+
   private
 
   def activity_name

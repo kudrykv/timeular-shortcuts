@@ -32,6 +32,20 @@ class TimeularService
     'Done.'
   end
 
+  def tags(tags)
+    return 'You are not tracking anything at the time.' unless (ct = @client.current_tracking)
+
+    remote_tags = @client.tags
+    unknown_tags = tags.map { |t| remote_tags.find { |rt| rt.label == t } ? nil : t }.compact
+    return "Tags #{unknown_tags.join(', ')} are unknown." unless unknown_tags.empty?
+
+    encoded_tags = tags.map { |t| remote_tags.find { |rt| rt.label == t }.encode_for_note }.join(' ')
+
+    note = ct.extract_note_to_string
+    @client.update_note("#{encoded_tags} #{note}")
+    'Done.'
+  end
+
   def add_tags(tags)
     return 'You are not tracking anything at the time.' unless (ct = @client.current_tracking)
 

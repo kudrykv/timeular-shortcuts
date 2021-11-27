@@ -19,6 +19,12 @@ class TimeularController < ApplicationController
     render json: e, status: 400
   end
 
+  def tags
+    render json: svc.tags(query_tags)
+  rescue StandardError => e
+    render json: e, status: 400
+  end
+
   def add_tags
     render json: svc.add_tags(query_tags)
   rescue StandardError => e
