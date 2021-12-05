@@ -14,4 +14,18 @@ class BasicHash
   def respond_to_missing?(*args)
     @item.respond_to_missing?(*args)
   end
+
+  def respond_to?(*args)
+    @item.respond_to?(*args)
+  end
+
+  def ==(obj)
+    return false unless obj.item
+
+    @item.keys do |key|
+      return false if @item[key] != obj.item[key]
+    end
+
+    true
+  end
 end

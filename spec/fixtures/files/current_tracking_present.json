@@ -1,0 +1,28 @@
+{
+  "currentTracking": {
+    "id": 1,
+    "activityId": "1217348",
+    "startedAt": "2020-08-03T04:00:00.000",
+    "note": {
+      "text": "99 sheep <{{|t|1|}}> <{{|m|2|}}>",
+      "tags": [
+        {
+          "id": 1,
+          "key": "3b381b24-c690-4000-9079-7355579162fb",
+          "label": "some tag",
+          "scope": "timeular",
+          "spaceId": "1"
+        }
+      ],
+      "mentions": [
+        {
+          "id": 2,
+          "key": "2b381b24-c690-4000-9079-7355579162fb",
+          "label": "some-mention",
+          "scope": "timeular",
+          "spaceId": "1"
+        }
+      ]
+    }
+  }
+}

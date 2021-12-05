@@ -31,3 +31,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "http", "~> 5.0"
+
+gem "rspec", "~> 3.10", :group => :test
+
+gem "rspec-rails", "~> 5.0", :group => :test
