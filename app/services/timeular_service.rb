@@ -67,4 +67,8 @@ class TimeularService
     @client.update_note(note)
     'Done.'
   end
+
+  def activities
+    @client.get_active_activities
+  end
 end
