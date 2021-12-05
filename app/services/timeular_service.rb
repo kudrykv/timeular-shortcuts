@@ -69,6 +69,6 @@ class TimeularService
   end
 
   def activities
-    @client.get_active_activities
+    @client.get_active_activities.map(&:name)
   end
 end
